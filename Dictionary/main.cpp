@@ -33,12 +33,18 @@ the class.
     if (class_grades.IndexOfTerm(grades[i]) < 0) {
       class_grades.Add(current_grade, 1);
 
-    } else {
+} else {
       // Update the else statement
       // find the definition of the given grade in the class_grades dictionary
+      int current_count = class_grades.GetDefinition(current_grade);
+
       // Add one to the definition
+      current_count++;
+
       // update the class_grades with the new definition of the grade
+      class_grades.UpdateDefinition(current_grade, current_count);
     }
   }
   cout << class_grades;
+
 }
