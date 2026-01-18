@@ -79,8 +79,17 @@ D Dictionary<T, D, MAX_SIZE>::GetDefinition(T term) const {
  */
 template <class T, class D, int MAX_SIZE>
 void Dictionary<T, D, MAX_SIZE>::UpdateDefinition(T term, D newDefinition) {
-  // Update this function so that it updates the given term with new definition
+  // 1. Find the index of the term using our helper function
+  int pos = IndexOfTerm(term);
 
+  // 2. If the term exists (index is not -1), update the definition
+  if (pos >= 0) {
+    definitions[pos] = newDefinition;
+  } else {
+    // 3. If not found, it's good practice to throw an error 
+    // to match the behavior of GetDefinition
+    throw std::out_of_range("Term not found");
+  }
 }
 
 /**
@@ -93,4 +102,5 @@ std::ostream &operator<<(std::ostream &out,
     out << d.terms[i] << "\t" << d.definitions[i] << std::endl;
   }
   return out;
+
 }
